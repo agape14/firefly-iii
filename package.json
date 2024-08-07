@@ -1,6 +1,14 @@
 {
     "scripts": {
-        "postinstall": "patch-package --error-on-fail"
+        "postinstall": "patch-package --error-on-fail",
+        "install:v1": "cd resources/assets/v1 && npm install",
+        "install:v2": "cd resources/assets/v2 && npm install",
+        "build:v1": "cd resources/assets/v1 && npm run build",
+        "build:v2": "cd resources/assets/v2 && npm run build",
+        "dev:v1": "cd resources/assets/v1 && npm run dev",
+        "dev:v2": "cd resources/assets/v2 && npm run dev",
+        "install:all": "npm run install:v1 && npm run install:v2",
+        "build:all": "npm run build:v1 && npm run build:v2"
     },
     "workspaces": [
         "resources/assets/v1",

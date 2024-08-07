@@ -34,8 +34,12 @@ return new class () extends Migration {
                 try {
                     Schema::table(
                         $table,
-                        static function (Blueprint $blueprint) use ($field): void {
-                            $blueprint->index($field);
+                        static function (Blueprint $blueprint) use ($field, $table): void {
+                            if ($table === 'journal_meta' && $field === 'data') {
+                                $blueprint->index(['data(191)']); // Add index with length
+                            } else {
+                                $blueprint->index($field);
+                            }
                         }
                     );
                 } catch (QueryException $e) {
